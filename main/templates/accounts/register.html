@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="{% static 'styleregister.css' %}">
+</head>
+<body>
+
+  <div class="wrapper">
+    <h2>Create your Account</h2>
+    <form method="POST">
+      {% csrf_token %}
+
+      <div class="input-group">
+        <label for="id_username">Username:</label>
+        {{ form.username }}
+        {% if form.username.errors %}
+          <p style="color: red;">{{ form.username.errors.0 }}</p>
+        {% endif %}
+      </div>
+
+      <div class="input-group">
+        <label for="id_email">Email:</label>
+        {{ form.email }}
+        {% if form.email.errors %}
+          <p style="color: red;">{{ form.email.errors.0 }}</p>
+        {% endif %}
+      </div>
+
+     
+
+      <div class="input-group">
+        <label for="id_age">Age:</label>
+        {{ form.age }}
+        {% if form.age.errors %}
+          <p style="color: red;">{{ form.age.errors.0 }}</p>
+        {% endif %}
+      </div>
+
+      <div class="input-group">
+        <label for="id_interest">Interest:</label>
+        {{ form.interest }}
+        {% if form.interest.errors %}
+          <p style="color: red;">{{ form.interest.errors.0 }}</p>
+        {% endif %}
+      </div>
+       <div class="input-group">
+        <label for="id_password1">Password:</label>
+        {{ form.password1 }}
+        {% if form.password1.errors %}
+          <p style="color: red;">{{ form.password1.errors.0 }}</p>
+        {% endif %}
+      </div>
+
+      <div class="input-group">
+        <label for="id_password2">Confirm Password:</label>
+        {{ form.password2 }}
+        {% if form.password2.errors %}
+          <p style="color: red;">{{ form.password2.errors.0 }}</p>
+        {% endif %}
+      </div>
+
+      <button type="submit">Register</button>
+    </form>
+    {% comment %} <p>
+    {% if user %}
+    New user created with username: {{ user.username }}
+    {% endif %}
+    
+    {% if error_message %}
+    New user created with username: {{ error_message }}
+    {% endif %}
+    </p> {% endcomment %}
+  </div>
+</body>
+</html>

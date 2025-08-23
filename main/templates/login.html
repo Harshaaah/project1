@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'stylelogin.css' %}">
+  <!-- Font Awesome CDN link for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+</head>
+<body>
+  {% comment %} {% if messages %}
+  <div style="text-align: center; margin-bottom: 20px;">
+    {% for message in messages %}
+      <div style="background-color: #d4edda; color: #155724; padding: 10px; border-radius: 5px; display: inline-block;">
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div> {% endcomment %}
+{% comment %} {% endif %} {% endcomment %}
+  <div class="wrapper">
+    <div class="title"><span>Login Form</span></div>
+    <form method="post">
+      {%csrf_token %}
+      <div class="row">
+        <i class="fas fa-user"></i>
+        <input type="text" placeholder="username" name="username" required />
+      </div>
+      <div class="row">
+        <i class="fas fa-lock"></i>
+        <input type="password" placeholder="Password" name="password" required />
+      </div>
+      <div class="pass"><a href="#">Forgot password?</a>
+
+      <div class="row button">
+        <input type="submit" value="Login" />
+      </div>
+      <br>
+      {% if error_message %}
+        <div style="color: red; margin-top: 10px;">
+          {{ error_message }}
+        </div>
+      {% endif %}
+      
+    </form>
+  </div>
+</body>
+</html>

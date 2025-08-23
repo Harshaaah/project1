@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Client Dashboard</title>
+  <link rel="stylesheet" href="{% static 'client_dashboard.css' %}">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-brand">MindCare</div>
+    <ul class="navbar-links">
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="#">Articles</a></li>
+      <li><a href="{% url 'logout' %}">Logout</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1>Welcome, {{ user.username }}</h1>
+
+    <section class="profile-section">
+      <h2>👤 Your Profile</h2>
+      <div class="profile-box">
+        <p><strong>Age:</strong> {{ user.age }}</p>
+        <p><strong>Interest:</strong> {{ user.interest }}</p>
+        <h3> Add New Interest</h3>
+        <form method="POST">
+          {% csrf_token %}
+          <input type="text" name="new_interest" placeholder="Enter new interest" required>
+          <button type="submit">Add Interest</button>
+        </form>
+        {% if interest_message %}
+        <p style="color: green;">{{ interest_message }}</p>
+        {% endif %}
+        {% if interest_error %}
+          <p style="color: red;">{{ interest_error }}</p>
+        {% endif %}
+      </div>
+    </section>
+    
+
+
+
+    <section class="articles-section">
+      <h2>🧠 AI Recommended Articles</h2>
+      <ul>
+        {% for article in articles %}
+          <li>{{ article }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+    <h2 style="color: #8e44ad;">📅 Your Bookings</h2>
+    <section class="profile-box">
+      
+      <ul>
+        {% for booking in bookings %}
+          <li>{{ booking.counsellor.username }} on {{ booking.date }}</li>
+          <strong style="color: 
+          {% if booking.status == 'Accepted' %}green
+          {% elif booking.status == 'Rejected' %}red
+          {% else %}orange
+          {% endif %}
+          ">( {{ booking.status }} )</strong>
+          </li>
+  
+        {% empty %}
+          <li>No bookings yet</li>
+        {% endfor %}
+      </ul>
+      <a class="btn" href="{% url 'book_counsellor' %}">Book Counsellor</a>
+    </section>
+
+    <h2 style="color: #8e44ad;">👨‍⚕️ Available Counsellors</h2>
+    <section class="profile-box">
+      
+      <ul>
+        {% for counsellor in counsellors %}
+          <li>{{ counsellor.username }} – {{ counsellor.experience }} years</li>
+        {% empty %}
+          <li>No counsellors available</li>
+        {% endfor %}
+      </ul>
+    </section>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+{% comment %} {% extends 'base.html' %}
+{% block content %}
+<h2>Book a Counsellor</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Book</button>
+</form>
+{% endblock %} {% endcomment %}
+
+{% comment %} {% extends 'base.html' %} {% endcomment %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'stylebooking.css' %}">
+
+{% if messages %}
+  {% for message in messages %}
+    <div style="padding: 10px; background-color: #d4edda; color: #155724; border-radius: 5px; margin-bottom: 10px;">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
+
+<div class="booking-container">
+  <h2>Book a Counsellor</h2>
+  <form method="POST">
+    {% csrf_token %}
+
+    <label for="counsellor">Select Counsellor:</label>
+    <select name="counsellor" id="counsellor">
+      {% for counsellor in form.fields.counsellor.queryset %}
+        <option value="{{ counsellor.id }}">{{ counsellor.username }}</option>
+      {% endfor %}
+    </select>
+
+    <label for="date">Date:</label>
+    <input type="date" name="date" id="date">
+
+    <label for="time">Time:</label>
+    <input type="time" name="time" id="time">
+
+    <button type="submit">Book</button>
+  </form>
+</div>
+{% endblock %}

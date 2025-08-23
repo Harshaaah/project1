@@ -1,0 +1,12 @@
+{% comment %} {% extends "base.html" %} {% endcomment %}
+{% block content %}
+  <h2>Welcome, {{ user.username }}!</h2>
+  <h3>Your Bookings with Clients:</h3>
+  <ul>
+    {% for booking in bookings %}
+      <li>{{ booking.date }} - {{ booking.client.username }}</li>
+    {% empty %}
+      <li>No bookings yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home | AI Counselling Booking Platform</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}"> 
+</head>
+<body>
+  <div class="navbar">
+    <div><strong>Counselling Booking platform and Articles</strong></div>
+    <div>
+      <a href="{% url 'login' %}">Login</a>
+      {% comment %} <a href="#">Articles</a> {% endcomment %}
+      {% comment %} <a href="#">Book Session</a> {% endcomment %}
+    </div>
+  </div>
+
+  <div class="hero">
+    <h1>Welcome to AI Recommending articles and online Counselling Booking platform</h1>
+    <p style="color:black;">Your personalized mental health support & article recommendations.</p>
+    <div class="buttons">
+      <a href="{% url 'register' %}">client registration</a>
+      <a href="{% url 'registercounsellor' %}">counsellor registration</a>
+    </div>
+  </div>
+  <section id="about" style="padding: 40px; font-family: Arial, sans-serif; background-color: #e4e0e1ff;">
+  <div style="max-width: 800px; margin: auto;">
+    <h1 style="text-align: center; color: #333;">About Us</h1>
+    <p style="font-size: 18px; line-height: 1.6; color: #555;">
+      <strong>AI Recommending Articles and Online Counselling Booking Platform</strong> is a web-based solution built to promote mental well-being and personal growth. It enables users to receive AI-driven article recommendations based on their interests and age, and also allows them to book sessions with registered counsellors easily.
+    </p>
+    <p style="font-size: 18px; line-height: 1.6; color: #555;">
+      The platform ensures a smooth user experience with secure login, role-based access for clients and counsellors, and a simple appointment booking system.
+    </p>
+    <ul style="font-size: 18px; color: #444; margin-top: 20px;">
+      <li> AI-powered personalized article suggestions</li>
+      <li> Role-based login and registration</li>
+      <li> Online counselling appointment booking</li>
+      <li> Counsellor management via admin panel</li>
+    </ul>
+  </div>
+</section>
+
+</body>
+</html>
